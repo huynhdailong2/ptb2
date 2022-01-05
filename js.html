@@ -1,0 +1,118 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Huỳnh Đại Long</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<style>
+    * {
+        box-sizing: border-box;
+        margin: 0;
+        padding: 0;
+    }
+
+    .content {
+        width: 100%;
+        height: 400px;
+        background: chocolate;
+        border: 5px solid brown;
+        border-radius: 15px;
+        justify-content: center;
+        align-items: center;
+    }
+
+    .form {
+        margin: 5px 0 0 5px;
+    }
+
+    .result {
+        width: 500px;
+        height: 285px;
+        background: #fff;
+        margin: 5px 0 5px 0;
+        border-radius: 5px;
+        text-align: center;
+    }
+
+    label {
+        color: darkblue;
+    }
+</style>
+
+<body>
+    <marquee behavior="alternate" bgcolor="pink">
+        <h1>Giải phương trình bậc 2: ax^2 + bx + c = 0</h1>
+    </marquee>
+    <div class="container">
+        <div class="content">
+            <div class="row">
+                <div class="col-md-6">
+                    <div class="form">
+                        <form class="form-control">
+                            <label for="">Nhập hệ số a</label>
+                            <input type="text" name="soA" id="soA" class="form-control">
+                            <label for="">Nhập hệ số b</label>
+                            <input type="text" name="soB" id="soB" class="form-control">
+                            <label for="">Nhập hệ số c</label>
+                            <input type="text" name="soC" id="soC" class="form-control"><br>
+                            <input onclick="ptt();" value="Giải Phương Trình" class="btn btn-success">
+                        </form>
+                    </div>
+                </div>
+                <div class="col-md-6">
+                    <div class="result">
+                        <h5>Kết quả</h5>
+                        <p id="result1"></p>
+                        <p id="result2"></p>
+                        <p id="result3"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+
+    </div>
+</body>
+
+</html>
+<script>
+    function ptt() {
+        let a = document.getElementById('soA').value;
+        let b = document.getElementById('soB').value;
+        let c = document.getElementById('soC').value;
+
+        if (a == 0) {
+            if (b == 0) {
+                if (c == 0) {
+                    document.getElementById('result1').innerHTML = 'Phương trình: ' + a + 'x^2 + ' + b + 'x +' + c + ' = 0 có vô số nghiệm';
+                } else {
+                    document.getElementById('result1').innerHTML = 'Phương trình: ' + a + 'x^2 + ' + b + 'x +' + c + ' = 0 vô nghiệm';
+                }
+            } else {
+                x = -c / b;
+                document.getElementById('result1').innerHTML = 'Phương trình: ' + a + 'x^2 + ' + b + 'x +' + c + ' = 0 vô nghiệm có 1 nghiệm duy nhất: x =' + x;
+            }
+        } else {
+            delta = b * b - 4 * a * c;
+            if (delta > 0) {
+                let x1 = (-b + Math.sqrt(delta)) / (2 * a);
+                let x2 = (-b - Math.sqrt(delta)) / (2 * a);
+                document.getElementById('result1').innerHTML = 'Phương trình: ' + a + 'x^2 + ' + b + 'x +' + c + ' = 0 có hai nghiệm phân biệt: </br>';
+                document.getElementById('result2').innerHTML = 'Nghiệm thứ nhất x1 = ' + x1 + '</br>';
+                document.getElementById('result3').innerHTML = 'Nghiệm thứ nhất x2 = ' + x2 + '</br>';
+            } else if (delta == 0) {
+                x = -b / 2 * a;
+                document.getElementById('result1').innerHTML = 'Phương trình: ' + a + 'x^2 + ' + b + 'x +' + c + ' = 0 có nghiệm kép là x1 = x2 =' + x;
+                document.writeln('Phương trình: ' + a + 'x^2 + ' + b + 'x +' + c + ' = 0 có nghiệm kép là x1 = x2 =' + x);
+            } else {
+                document.getElementById('result1').innerHTML = 'Phương trình: ' + a + 'x^2 + ' + b + 'x +' + c + ' vô nghiệm';
+            }
+
+        }
+    }
+
+</script>

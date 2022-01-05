@@ -1,0 +1,100 @@
+<!DOCTYPE html>
+<html lang="en">
+
+<head>
+    <meta charset="UTF-8">
+    <meta http-equiv="X-UA-Compatible" content="IE=edge">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Huỳnh Đại Long: phương trình bậc 2</title>
+    <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css"
+        integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+</head>
+<style>
+    .content {
+        border-radius: 15px;
+        border: 5px solid springgreen;
+    }
+
+    h2 {
+        margin: 20px 0;
+    }
+
+    .result {
+        border: 1px solid #0000;
+        background: wheat;
+        min-height: 300px;
+        border-radius: 15px;
+    }
+</style>
+
+<body>
+    <div class="container">
+        <div class="content">
+            <div class="row">
+                <marquee behavior="alternate" direction="">
+                    <h2>Giải phương trình bậc 2: ax^2+bx+c=0</h2>
+                </marquee>
+            </div>
+            <div class="row">
+                <div class="col-md-6">
+                    <form class="form-control">
+                        <label for="">Nhập vào hệ số A</label>
+                        <input type="text" id="hesoA" class="form-control" placeholder="Nhập vào hệ số A..">
+
+                        <label for="">Nhập vào hệ số B</label>
+                        <input type="text" id="hesoB" class="form-control" placeholder="Nhập vào hệ số B..">
+                        <label for="">Nhập vào hệ số C</label>
+                        <input type="text" id="hesoC" class="form-control" placeholder="Nhập vào hệ số C.."><br>
+                        <input onclick="gptt();" value="Giải phương trình" class="btn btn-success">
+                    </form>
+                </div>
+                <div class="col-md-6">
+                    <div class="result">
+                        <h3>Kết quả</h3>
+                        <p id="result">Chưa có kết quá</p>
+                        <p id="result1"></p>
+                        <p id="result2"></p>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</body>
+
+</html>
+<script>
+    function gptt() {
+        let a = document.getElementById('hesoA').value;
+        let b = document.getElementById('hesoB').value;
+        let c = document.getElementById('hesoC').value;
+        if (a == 0) {
+            if (b == 0) {
+                if (c == 0) {
+                    document.getElementById('result').innerHTML = 'Phương trình: ' + a + 'x^2 + ' + b + 'x ' + c + ' = 0 có vô số nghiệm';
+                } else {
+                    document.getElementById('result').innerHTML = 'Phương trình: ' + a + 'x^2 + ' + b + 'x ' + c + ' = 0 vô nghiệm';
+
+                }
+            } else {
+                x = -c / b;
+                document.getElementById('result').innerHTML = 'Phương trình: ' + a + 'x^2 + ' + b + 'x ' + c + ' = 0 có 1 nghiệm duy nhất: x = ' + x;
+
+            }
+        } else {
+            let delta = b * b - 4 * a * c;
+            if (delta > 0) {
+                let x1 = (-b + Math.sqrt(delta)) / (2 * a);
+                let x2 = (-b - Math.sqrt(delta)) / (2 * a);
+                document.getElementById('result').innerHTML = 'Phương trình: ' + a + 'x^2 + ' + b + 'x ' + c + ' = 0 có hai nghiệm phân biệt:</br>';
+                document.getElementById('result1').innerHTML = 'Nghiệm thứ nhất x1= ' + x1 + '<br>';
+                document.getElementById('result2').innerHTML = 'Nghiệm thứ hai x2= ' + x2 + '<br>';
+            } else if (delta == 0) {
+                x = -b / 2 * a;
+                document.getElementById('result').innerHTML = 'Phương trình: ' + a + 'x^2 + ' + b + 'x ' + c + ' = 0 có nghiệm kép x1 = x2 = ' + x;
+
+            } else {
+                document.getElementById('result').innerHTML = 'Phương trình: ' + a + 'x^2 + ' + b + 'x ' + c + ' = 0 vô nghiệm';
+            }
+        }
+    }
+</script>
